@@ -44,6 +44,14 @@ public class Screen {
         renderer.start();
     }
 
+    public Screen(final int width, final int height){
+        Log.info("JGameEngine " + JGE_VERSION + " - Copyright (c) 2018-2019 Hunter Wilcox");
+        this.width = width;
+        this.height = height;
+        image = new BufferedImage(this.width, this.height, BufferedImage.TYPE_INT_RGB);
+        pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
+    }
+
     public int getWidth(){
         return width;
     }
@@ -59,6 +67,10 @@ public class Screen {
     public void setTitle(final String title){
         this.title = title;
         frame.setTitle(title);
+    }
+
+    public void setRenderer(final Renderer renderer){
+        this.renderer = renderer;
     }
 
     public Renderer getRenderer(){

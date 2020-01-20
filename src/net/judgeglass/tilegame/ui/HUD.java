@@ -1,9 +1,11 @@
 package net.judgeglass.tilegame.ui;
 
+import net.judgeglass.jgameengine.core.io.Log;
 import net.judgeglass.tilegame.Game;
 import net.judgeglass.jgameengine.core.entity.GameObject;
 import net.judgeglass.jgameengine.gfx.Font;
 import net.judgeglass.jgameengine.gfx.Screen;
+import net.judgeglass.tilegame.world.WorldGen;
 
 public class HUD extends GameObject {
 

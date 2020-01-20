@@ -1,5 +1,7 @@
 package net.judgeglass.tilegame.player;
 
+import net.judgeglass.jgameengine.core.input.Mouse;
+import net.judgeglass.jgameengine.core.io.Log;
 import net.judgeglass.tilegame.world.WorldGen;
 
 import java.awt.event.KeyAdapter;
@@ -29,8 +31,12 @@ public class PlayerMovement extends KeyAdapter {
             case KeyEvent.VK_D:
                 DPressEvent();
                 break;
+            case KeyEvent.VK_P:
+                PPressEvent();
+                break;
             case KeyEvent.VK_ESCAPE:
                 System.exit(0);
+
         }
     }
 
@@ -48,5 +54,13 @@ public class PlayerMovement extends KeyAdapter {
 
     private void DPressEvent(){
         WorldGen.xOff -= 16;
+    }
+
+    private void PPressEvent(){
+
+        int x = ((Mouse.getX() - WorldGen.xOff) * 16);
+        int y = ((Mouse.getY() - WorldGen.yOff) * 16);
+        Log.info(String.format("MOUSE: X: %d\tY: %d", x, y));
+        WorldGen.changeTile(x, y, 33);
     }
 }

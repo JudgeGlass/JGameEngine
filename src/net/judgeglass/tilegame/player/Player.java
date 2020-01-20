@@ -1,6 +1,8 @@
 package net.judgeglass.tilegame.player;
 
 import net.judgeglass.jgameengine.core.entity.GameObject;
+import net.judgeglass.jgameengine.core.input.Mouse;
+import net.judgeglass.jgameengine.core.io.Log;
 import net.judgeglass.jgameengine.gfx.PixelDrawer;
 import net.judgeglass.jgameengine.gfx.Screen;
 

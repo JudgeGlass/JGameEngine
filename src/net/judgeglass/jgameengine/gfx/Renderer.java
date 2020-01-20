@@ -20,6 +20,7 @@ public class Renderer extends Canvas implements Runnable{
 
     public Renderer(final Screen screen){
         this.screen = screen;
+        screen.setRenderer(this);
         Mouse m = new Mouse();
         addMouseMotionListener(m);
         addMouseListener(m);
@@ -133,9 +134,6 @@ public class Renderer extends Canvas implements Runnable{
     }
 
     private void render(){
-        if(counter > 0){
-            return;
-        }
         BufferStrategy bs = getBufferStrategy();
         if(bs == null){
             createBufferStrategy(3);
@@ -144,12 +142,14 @@ public class Renderer extends Canvas implements Runnable{
 
         Graphics g = bs.getDrawGraphics();
 
-        try {
-            for (GameObject go : Entity.getObjects()) {
-                go.render(screen);
+        if(counter  == 0) {
+            try {
+                for (GameObject go : Entity.getObjects()) {
+                    go.render(screen);
+                }
+            } catch (ConcurrentModificationException e) {
+                e.printStackTrace();
             }
-        }catch (ConcurrentModificationException e){
-            e.printStackTrace();
         }
 
         g.drawImage(screen.getImage(), 0, 0, screen.getWidth(), screen.getHeight(), null);

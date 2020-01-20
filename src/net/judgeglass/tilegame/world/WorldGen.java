@@ -22,7 +22,7 @@ public class WorldGen {
     /*----------------*/
 
 
-    private List<WorldData> worldData;
+    private static List<WorldData> worldData;
     private Random rand;
 
     public static int xOff;
@@ -40,8 +40,8 @@ public class WorldGen {
     }
 
     private void make(){
-        for(int x = -64; x < 64; x++){
-            for(int y = -64; y < 64; y++){
+        for(int x = -128; x < 128; x++){
+            for(int y = -128; y < 128; y++){
                 int randNum = rand.nextInt(6);
 
                 if(rand.nextInt(1000)  == 10){
@@ -49,7 +49,7 @@ public class WorldGen {
                     continue;
                 }
 
-                if(randNum <= 3){
+                if(randNum <= 2){
                     randNum = 4;
                 }
 
@@ -78,6 +78,14 @@ public class WorldGen {
 
     public List<WorldData> getWorldData() {
         return worldData;
+    }
+
+    public static void changeTile(int x, int y, int tile){
+        for(WorldData worldTile: worldData){
+            //Log.info("X: " + worldTile.x);
+            if(worldTile.x == x && (worldTile.y == y))
+                worldTile.sprite = tile;
+        }
     }
 
     private class WorldData {
